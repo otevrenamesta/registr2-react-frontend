@@ -11,7 +11,7 @@ class Loading extends React.Component {
   render() {
     if(this.context.state.loading) {
       return (
-        <span>LoaDinG ..</span>
+        <span><i className="fi-clock"></i> LoaDinG ..</span>
       )
     } else {
       return null;

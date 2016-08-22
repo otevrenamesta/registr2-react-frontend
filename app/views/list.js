@@ -129,7 +129,7 @@ class ListView extends React.Component {
 
     return (
       <div className="medium-12 columns">
-        <Datagrid onSort={this.onListSort.bind(this)} fields={fields} />
+        <Datagrid onSort={this.onListSort.bind(this)} fields={fields} sortInfo={this.props.state} />
         {this.buildPagination()}
       </div>
     );

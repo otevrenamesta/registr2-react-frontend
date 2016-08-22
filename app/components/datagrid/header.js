@@ -21,12 +21,14 @@ class Header extends React.Component {
 
     if (onSort) {
         let sortIcon = null;
-        if (sort) {
-            sortIcon = <span className={`sorted sorted-${sort.toLowerCase()}`}></span>;
+        if (sort && sort === 'ASC') {
+          sortIcon = <i className="fi-arrow-up"></i>
+        } else if (sort && sort === 'DESC') {
+          sortIcon = <i className="fi-arrow-down"></i>
         }
         const sortDir = 'ASC' === sort ? 'DESC' : 'ASC';
 
-        element = <a onClick={this.onSort(sortDir)}>{sortIcon}{label}</a>;
+        element = <a onClick={this.onSort(sortDir)}>{label} {sortIcon}</a>;
     }
 
     return (

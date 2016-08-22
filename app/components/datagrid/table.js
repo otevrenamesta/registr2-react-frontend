@@ -12,21 +12,20 @@ class Datagrid extends React.Component {
   }
   static propTypes = {
     fields: React.PropTypes.array.isRequired,
-    sortDir: React.PropTypes.string,
-    sortField: React.PropTypes.string,
+    sortInfo: React.PropTypes.object.isRequired,
     onSort: React.PropTypes.func.isRequired
   }
 
   buildHeaders() {
     let headers = [];
-    const {fields, sortDir, sortField} = this.props;
+    const {fields, sortInfo, onSort} = this.props;
 
     for (let i in fields) {
       const fieldName = fields[i].name;
       let sort = null;
 
-      if (fieldName === sortField) {
-        sort = sortDir;
+      if (fieldName === sortInfo.sortField) {
+        sort = sortInfo.sortDir;
       }
 
       headers.push(
@@ -35,7 +34,7 @@ class Datagrid extends React.Component {
           sort={sort}
           fieldName={fieldName}
           label={fields[i].label}
-          onSort={this.props.onSort}
+          onSort={onSort}
         />
       );
     }

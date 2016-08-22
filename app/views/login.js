@@ -15,7 +15,9 @@ class LoginView extends React.Component {
       <div className="medium-12 columns">
         <input name="uname" type="text" placeholder="username" />
         <input name="pwd" type="password" placeholder="password" />
-        <button type="button" className="button" onClick={this.doLogin.bind(this)}>login</button>
+        <button type="button" className="button" onClick={this.doLogin.bind(this)}>
+          <i className="fi-check"></i> login
+        </button>
       </div>
     );
   }

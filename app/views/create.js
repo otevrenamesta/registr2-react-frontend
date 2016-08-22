@@ -51,7 +51,7 @@ class CreateView extends React.Component {
           <div className="row">
             <div className="small-12 columns">
               <button type="submit" className="success button">
-                save
+                <i className="fi-check"></i> save
               </button>
             </div>
           </div>

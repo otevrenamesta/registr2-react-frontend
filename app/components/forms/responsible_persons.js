@@ -28,13 +28,13 @@ class ResponsiblePersons extends React.Component {
                 placeholder="Zadej novou hodnotu" />
             </div>
             <div className="small-6 columns">
-              <button className="button" onClick={this.onOk.bind(this)}>ok</button>
-              <button className="button secondary" onClick={this.onCancel.bind(this)}>cancel</button>
+              <button className="button" onClick={this.onOk.bind(this)}><i className="fi-tick"></i> ok</button>
+              <button className="button secondary" onClick={this.onCancel.bind(this)}><i className="fi-x"></i> cancel</button>
             </div>
           </li>
         )
       }
-      return (<li>{p} <a onClick={this.onEdit(idx)}>edit</a> <a onClick={this.onRemove(p)}>remove</a></li>)
+      return (<li>{p} <a onClick={this.onEdit(idx)}><i className="fi-pencil"></i></a> <a onClick={this.onRemove(p)}><i className="fi-minus"></i></a></li>)
     })
   }
 
@@ -92,13 +92,13 @@ class ResponsiblePersons extends React.Component {
               placeholder="Zadej novou persoonu" />
           </div>
           <div className="small-6 columns">
-            <button className="button" onClick={this.onOk.bind(this)}>ok</button>
-            <button className="button secondary" onClick={this.onCancel.bind(this)}>cancel</button>
+            <button className="button" onClick={this.onOk.bind(this)}><i className="fi-check"></i> ok</button>
+            <button className="button secondary" onClick={this.onCancel.bind(this)}><i className="fi-x"></i> cancel</button>
           </div>
         </div>
       )
     } else {
-      return (<button className="button" onClick={this.onShowEdit.bind(this)}>add</button>)
+      return (<button className="button" onClick={this.onShowEdit.bind(this)}><i className="fi-plus"></i></button>)
     }
   }
 

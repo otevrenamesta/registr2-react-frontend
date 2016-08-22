@@ -18,13 +18,13 @@ class UserInfo extends React.Component {
       return (
         <ul className="menu">
           <li className="menu-text">logged as: {this.context.state.loggedUser.name}</li>
-          <li><button type="button" className="tiny button" onClick={this.doLogout.bind(this)}>logout</button></li>
+          <li><button type="button" className="tiny button" onClick={this.doLogout.bind(this)}><i className="fi-arrows-out"></i> logout</button></li>
         </ul>
       );
     } else {
       return (
         <ul className="menu">
-          <li><Link to="/login">login</Link></li>
+          <li><Link to="/login"><i className="fi-torso"></i> login</Link></li>
         </ul>
       );
     }
