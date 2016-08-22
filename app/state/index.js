@@ -145,73 +145,22 @@ export default class AppState {
   }
 
   @action
-  loadShowData(entityName, id, sortField, sortDir) {
-    transaction(() => {
-      this.view = this.getView(entityName, 'ShowView');
-      this.loading = true;
-    });
+  loadItemData(typ, id) {
+    this.loading = true
 
-    return this.requester.getEntry(this.view, id, {
-      references: true, referencesList: true, sortField, sortDir
-    }).then((dataStore) => {
+    return this.requester.getEntry(id, typ).then((res) => {
       transaction(() => {
-        this.loading = false;
-        this.dataStore = dataStore;
-      });
-    });
+        this.loading = false
+        this.originEntityId = id
+        this.values = res.data
+      })
+    })
   }
-
-  // @action
-  // loadEditData(entityName, id, sortField, sortDir) {
-  //   transaction(() => {
-  //     this.view = this.getView(entityName, 'EditView');
-  //     this.loading = true;
-  //   });
-  //
-  //   return this.requester.getEntry(this.view, id, {
-  //     references: true, referencesList: true, choices: true, sortField, sortDir
-  //   }).then((dataStore) => {
-  //     transaction(() => {
-  //       this.originEntityId = id;
-  //       this.dataStore = dataStore;
-  //       let entry = dataStore.getFirstEntry(this.view.entity.uniqueId);
-  //       for (let fieldName in entry.values) {
-  //         this.values[fieldName] = entry.values[fieldName];
-  //       }
-  //       this.loading = false;
-  //     });
-  //   });
-  // }
 
   // called on each update of edit form. Validation performed here?
   @action
   updateData(fieldName, value, choiceFields=[]) {
     this.values[fieldName] = value;
-
-    // Handle related values between choice fields
-    if (choiceFields.length) {
-        choiceFields.map((field) => {
-            if (fieldName === field.name()) {
-                return;
-            }
-
-            let choices = field.choices();
-            if ('function' === typeof choices) {
-                choices = choices({ values: this.values });
-            }
-
-            let valueInChoices = false;
-            choices.map((v) => {
-                if (v.value === this.values[field.name()]) {
-                    valueInChoices = true;
-                }
-            });
-
-            if (!valueInChoices) {
-                this.values[field.name()] = null;
-            }
-        });
-    }
   }
 
   @action

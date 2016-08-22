@@ -1,5 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react';
+import { Link } from 'react-router';
 
 import Header from './header';
 
@@ -61,7 +62,7 @@ class Datagrid extends React.Component {
       const attrName = this.props.fields[i].name;
       const val = row[attrName] || '---';
 
-      cells.push(<td key={i}>{val}</td>);
+      cells.push(<td key={i}><Link to={`/show/${row.Type}/${row.id}`}>{val}</Link></td>);
     }
 
     cells.push(<td key={'datagrid-actions'}>{this.buildActions()}</td>);

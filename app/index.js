@@ -8,6 +8,7 @@ import AppState from './state';
 import MainView from './views/main';
 import ListView from './views/list';
 import CreateView from './views/create';
+import ShowView from './views/show'
 import EditView from './views/edit';
 import LoginView from './views/login';
 
@@ -17,6 +18,7 @@ const routes = (
     <IndexRoute name="dashboard" component={ListView} />
     <Route name="login" path="login" component={LoginView} />
     <Route name="create" path="create/:typ" component={CreateView} />
+    <Route name="show" path="show/:typ/:id" component={ShowView} />
     <Route name="edit" path="edit/:typ/:id" component={EditView}/>
   </Route>
 );
