@@ -36,28 +36,17 @@ class DataRequester {
 
   }
 
-  saveEntry(dataStore, view, rawEntry, id=null) {
+  saveEntry(data, id=null) {
       let query;
 
       if (id) {
-          query = this.writeQueries.updateOne(view, rawEntry, id);
+        query = axios.put(`${Conf.apiUrl}/${data.Type}/${id}`, data)
       } else {
-          query = this.writeQueries.createOne(view, rawEntry);
+        query = axios.post(`${Conf.apiUrl}/${data.Type}`, data)
       }
 
-      return query.then((data) => {
-          let entry = Entry.createFromRest(
-              data,
-              view.getFields(),
-              view.entity.name(),
-              view.identifier().name()
-          );
-
-          dataStore.fillReferencesValuesFromEntry(entry, view.getReferences(), true);
-
-          dataStore.setEntries(view.getEntity().uniqueId, [entry]);
-
-          return dataStore;
+      return query.then((response) => {
+        return response.data;
       });
   }
 }

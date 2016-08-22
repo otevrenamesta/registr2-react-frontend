@@ -19,6 +19,7 @@ export default class AppState {
   @observable totalItems = 0;
 
   @observable values = {};  // for single item manipulation
+  @observable errors = {}
 
   @observable loading = false;
 
@@ -36,6 +37,22 @@ export default class AppState {
     this.loggedUser = null;
   }
 
+  @action
+  validateData() {
+    transaction(() => {
+      this.errors = {}
+      if(! this.values.Title) {
+        this.errors.Title = 'It is mandatory to fill title'
+      }
+      if(this.values.ResponsiblePersons.length === 0) {
+        this.errors.ResponsiblePersons = 'It is mandatory to fill at least one responsible person'
+      }
+      if(this.values.file === null) {
+        this.errors.file = 'It is mandatory to fill file!'
+      }
+    });
+    return JSON.stringify(this.errors) === '{}'
+  }
 
   @action
   updateFilters(newFilters) {
@@ -116,9 +133,10 @@ export default class AppState {
   }
 
   @action
-  loadCreateData() {
+  loadCreateData(typ) {
     this.values = {
       file: null,
+      Type: typ,
       ResponsiblePersons: [],
       Anonymised: false,
       Title: '',
@@ -203,17 +221,16 @@ export default class AppState {
 
     let rawEntry = {};
     for (let name in this.values) {
-        rawEntry[name] = this.values[name];
+      rawEntry[name] = this.values[name];
     }
 
-    return this.requester
-      .save(this.dataStore, this.view, rawEntry, id)
-      .then((dataStore) => {
+    return this.requester.saveEntry(rawEntry, id)
+      .then((created) => {
         transaction(() => {
-          this.dataStore = dataStore;
-          this.loading = false;
-        });
-        return dataStore;
+          this.values = created
+          this.loading = false
+        })
+        return created
       });
   }
 

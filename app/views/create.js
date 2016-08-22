@@ -6,48 +6,28 @@ import DocumentContent from '../components/forms/content';
 
 class CreateView extends React.Component {
 
-    componentDidMount() {
-      this.props.state.loadCreateData(this.props.routeParams.entity);
-    }
+  componentDidMount() {
+    this.props.state.loadCreateData('contract');
+  }
 
-    updateField(name, value) {
-      this.props.state.updateData(name, value);
-    }
-
-    save(e) {
+  updateField(name) {
+    return (e) => {
       e.preventDefault();
+      this.props.state.updateData(name, e.target.value);
+    }
+  }
+
+  save(e) {
+    e.preventDefault();
+    if(this.props.state.validateData()) {
       this.props.state.saveData().then(this.onCreated.bind(this));
     }
+  }
 
-    onCreated(dataStore) {
-      const entityName = this.props.state.entityName;
-      const entry = dataStore.getFirstEntry(this.props.state.view.entity.uniqueId);
-
-      Notification.log('Element successfully created.', {addnCls: 'humane-flatty-success'});
-
-      const to = `/${entityName}/edit/${entry.identifierValue}`;
-      browserHistory.push(to);
-    }
-
-    buildFields(view, entry, dataStore) {
-        let fields = [];
-        const values = this.props.state.values;
-
-        for (let field of view.getFields()) {
-            const value = values[field.name()];
-
-            fields.push(
-                <div className="form-field form-group" key={field.order()}>
-                    <Field field={field} value={value} entity={view.entity}
-                           values={values} entry={entry}
-                           dataStore={dataStore}
-                           updateField={this.updateField.bind(this)} />
-                </div>
-            );
-        }
-
-        return fields;
-    }
+  onCreated(created) {
+    alert('ok, document created:\n' + JSON.stringify(created))
+    browserHistory.push('/')
+  }
 
   render() {
     const entityName = 'contract';
@@ -60,7 +40,7 @@ class CreateView extends React.Component {
 
           <div className="row">
             <div className="medium-6 columns">
-              <DocumentForm />
+              <DocumentForm updateField={this.updateField.bind(this)} />
             </div>
 
             <div className="medium-6 columns">

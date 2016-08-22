@@ -53,7 +53,13 @@ class DocumentContentForm extends React.Component {
   }
 
   render() {
-    return this.dataIsText ? this.renderTextArea() : this.renderUpload()
+    const errs = this.context.state.errors
+    return (
+      <div>
+        {this.dataIsText ? this.renderTextArea() : this.renderUpload()}
+        { errs.file ? <span className="form-error is-visible">{errs.file}</span> : null }
+      </div>
+    )
   }
 
 }

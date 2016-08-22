@@ -1,6 +1,6 @@
 module.exports = {
   contract: [{
-    ID: 1,
+    id: 1,
     Type: 'contract',
     Publisher: 1,
     Valid: true,
@@ -22,7 +22,7 @@ module.exports = {
     CurrentValidContract: '',
     Description: 'contract 1 desc'
   }, {
-    ID: 2,
+    id: 2,
     Type: 'contract',
     Publisher: 3,
     Valid: true,
@@ -44,7 +44,7 @@ module.exports = {
     CurrentValidContract: '',
     Description: 'contract 2 desc'
   }, {
-    ID: 3,
+    id: 3,
     Type: 'contract',
     Publisher: 2,
     Valid: true,
@@ -101,17 +101,17 @@ module.exports = {
     Contract: 2
   }],
   publishers: [{
-    ID: 1,
+    id: 1,
     Name: 'Mesto Brno',
     NoID: false,
     Country: 'CZE'
   }, {
-    ID: 2,
+    id: 2,
     Name: 'Mesto Praha',
     NoID: false,
     Country: 'CZE'
   }, {
-    ID: 3,
+    id: 3,
     Name: 'Mesto Tabor',
     NoID: false,
     Country: 'CZE'

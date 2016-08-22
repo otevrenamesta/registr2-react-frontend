@@ -18,11 +18,10 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
     "extract-text-webpack-plugin": "^1.0.1",
-    "fakerest": "^1.1.4",
     "file-loader": "^0.8.5",
     "json-server": "^0.8.18",
+    "lodash": "^4.15.0",
     "mobx-react-devtools": "^4.2.4",
-    "sinon": "^1.14.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.13",
     "webpack-dev-server": "^1.14.1"
