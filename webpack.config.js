@@ -34,7 +34,7 @@ module.exports = {
     // new ExtractTextPlugin('styles.css', { allChunks: true }),
     new htmlWebpackPlugin({
       name: process.env.SITENAME || 'Registr 2.0',
-      apiUrl: process.env.API_URL || 'http://localhost:3000',
+      apiUrl: process.env.API_URL || '/api',
       template: 'index.template.html',
       inject: false
     }),
