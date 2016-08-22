@@ -116,6 +116,17 @@ export default class AppState {
   }
 
   @action
+  loadCreateData() {
+    this.values = {
+      file: null,
+      ResponsiblePersons: [],
+      Anonymised: false,
+      Title: '',
+      Amount: 0
+    }
+  }
+
+  @action
   loadShowData(entityName, id, sortField, sortDir) {
     transaction(() => {
       this.view = this.getView(entityName, 'ShowView');
