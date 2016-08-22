@@ -3,10 +3,15 @@ import axios from 'axios';
 class DataRequester {
 
   _apiFlavor(q) {
-    return {
+    let converted = {
       _start: (q.page - 1) * q.perPage,
       _limit: q.perPage
     }
+    if(q.sortField) {
+      converted._sort = q.sortField
+      converted._order = q.sortDir
+    }
+    return converted
   }
 
   _getResponseTotalItems(response) {
