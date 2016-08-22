@@ -1,13 +1,9 @@
 import React from 'react';
-import {Link} from 'react-router';
 import Loading from '../../components/loading';
 import UserInfo from '../../components/userinfo';
+import TopMenu from '../../components/top_menu';
 
 class TopBar extends React.Component {
-
-  static contextTypes = {
-    state: React.PropTypes.object.isRequired
-  }
 
   render() {
     return (
@@ -15,10 +11,7 @@ class TopBar extends React.Component {
         <div className="row">
 
           <div className="top-bar-left">
-            <ul className="menu">
-              <li className="menu-text">{Conf.name}</li>
-              <li><Link to="/create/contract">create contract</Link></li>
-            </ul>
+            <TopMenu />
           </div>
 
           <div className="top-bar-right"><UserInfo /></div>
